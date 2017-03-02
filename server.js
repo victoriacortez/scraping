@@ -8,10 +8,10 @@ var Article = require("./models/Article.js");
 var request = require("request");
 
 var cheerio = require("cheerio");
-
+var app = express();
 
 var exphbs = require('express-handlebars');
-// Configure app with handlebars
+/* Configure app with handlebars
 module.exports = function(app) {
  var hbs = ehandlebars.create({
    defaultLayout: 'app',
@@ -22,9 +22,9 @@ module.exports = function(app) {
        return null
      }
    }
- })
+ })*/
 
- app.engine('handlebars', hbs.engine)
+ app.engine('handlebars', exphbs({defaultLayout:"main"}))
  app.set('view engine', 'handlebars')
 }
 
@@ -49,6 +49,15 @@ db.once("open", function() {
     console.log("SUCCESS");
 });
 
+app.get('/', function(req, res){
+     Article.find({}, function(error, doc) {
+       if (error) {
+           console.log(error);
+       }
+       else {
+         res.render('index', {articles: doc})
+       }
+   })
 
 //scrapes from the onion
 app.get("/scrape", function(req, res) {
