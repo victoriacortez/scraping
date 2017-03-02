@@ -4,13 +4,14 @@
         <img src="{{ this.imgURL }}">
     </div>
 </a>
+{{#each articles}}
 <div id="content">
-  {{#each article}}
+
     <h2>{{ this.title }}</h2>
     <p>{{ this.link }}</p>
     <p>{{ this.image }}</p>
-  {{/each}}
 </div>
+{{/each}}
 <div id="comments">
     <div class="comments">
         <h3>Post a Comment:</h3>
