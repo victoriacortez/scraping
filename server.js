@@ -9,13 +9,24 @@ var request = require("request");
 
 var cheerio = require("cheerio");
 
+
 var exphbs = require('express-handlebars');
+// Configure app with handlebars
+module.exports = function(app) {
+ var hbs = ehandlebars.create({
+   defaultLayout: 'app',
+   helpers: {
+     section: function(name, options) {
+       if (!this._sections) this._sections = {}
+       this._sections[name] = options.fn(this)
+       return null
+     }
+   }
+ })
 
-var exphbs = require("express-handlebars");
-
-app.engine("handlebars", exphbs({ defaultLayout: "index" }));
-app.set("view engine", "handlebars");
-mongoose.Promise = Promise;
+ app.engine('handlebars', hbs.engine)
+ app.set('view engine', 'handlebars')
+}
 
 
 var app = express();
