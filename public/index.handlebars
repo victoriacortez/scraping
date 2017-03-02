@@ -1,0 +1,18 @@
+<h1>Find Your Latest News Here!!!</h1>
+<a class="articleURL" href="{{ this.articleURL }}">
+    <div id="picture">
+        <img src="{{ this.image }}">
+    </div>
+</a>
+<div id="content">
+    <h2>{{ this.title }}</h2>
+    <p>{{ this.link }}</p>
+    <p>{{ this.image }}</p>
+</div>
+<div id="comments">
+    <div class="comments">
+        <h3>Post a Comment:</h3>
+        <input id="comment" type="text" name="comment" placeholder="What are your thoughts?">
+        <button id="post" data-id="{{ this._id }}">Post</button>
+    </div>
+</div>
